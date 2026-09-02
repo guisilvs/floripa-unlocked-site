@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "O que é o Floripa Unlocked?",
+    "paragraph": "O Floripa Unlocked é um aplicativo mobile para iOS e Android que revoluciona a forma como jovens e turistas exploram Florianópolis, combatendo a indecisão e a paralisia de escolha ao entregar rodadas periódicas com três a cinco sugestões hiperpersonalizadas de passeios, bares e restaurantes, fugindo das opções óbvias promovidas nas redes sociais."
+  },
+  {
+    "id": 2,
+    "title": "Como funciona as recomendações?",
+    "paragraph": "O motor de recomendação cruza em tempo real as preferências do usuário, como faixa de orçamento e categorias de interesse, com dados de contexto geográfico e climático fornecidos por APIs de geolocalização, clima e agenda cultural, garantindo que as sugestões entregues sejam sempre adequadas à localização, ao clima e ao horário da visita."
+  },
+  {
+    "id": 3,
+    "title": "Como funciona a gamificação?",
+    "paragraph": "O aplicativo transforma a exploração da cidade em um jogo interativo por meio da barra de progresso '100% Floripa' e de um mapa de conquistas, motivando os usuários a descobrirem novos bairros e comércios locais para desbloquear selos, competir de forma saudável com a sua rede de amigos e zerar a ilha."
+  },
+  {
+    "id": 4,
+    "title": "Como funciona o sistema de cashback?",
+    "paragraph": "Ao consumir em um estabelecimento parceiro sugerido pelo aplicativo, o usuário aponta a câmera do celular para o QR Code disponível no balcão do comércio, realizando um check-in instantâneo que valida a sua visita no mapa de exploração e credita a porcentagem de cashback acumulada diretamente na sua conta."
+  },
+  {
+    "id": 5,
+    "title": "Qual é o benefício da plataforma para os pequenos comércios locais?",
+    "paragraph": "Para os pequenos e novos negócios da ilha, o aplicativo funciona como um canal de atração B2B que direciona um fluxo presencial qualificado de jovens e turistas, permitindo aos lojistas criarem promoções e taxas de cashback dinâmicas no painel web para movimentar o estabelecimento em dias e horários de menor movimento."
+  }
+]
