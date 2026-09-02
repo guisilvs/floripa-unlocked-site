@@ -1,0 +1,84 @@
+:root {
+    --primary-color: #007bff;
+    --bg-light-blue: #f0f8ff;
+    --border-radius-custom: 25px;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    /* Removido o padding-top para eliminar a barra branca */
+}
+
+/* Navbar: Inicialmente escondida */
+.navbar {
+    background-color: var(--primary-color) !important;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: all 0.4s ease-in-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Classe ativada via JavaScript ao scrollar */
+.navbar.scrolled {
+    opacity: 0.98;
+    transform: translateY(0);
+}
+
+.hero-section {
+    background: linear-gradient(rgba(0, 123, 255, 0.8), rgba(0, 86, 179, 0.8)),
+        url('https://images.unsplash.com/photo-1599424423956-6f689f258a69?auto=format&fit=crop&q=80&w=1200');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 160px 0;
+    /* Aumentado um pouco para compensar a falta da navbar inicial */
+    margin-bottom: 40px;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+.custom-card {
+    border-radius: var(--border-radius-custom) !important;
+    transition: transform 0.3s ease;
+    border: none !important;
+}
+
+.custom-card:hover {
+    transform: translateY(-5px);
+}
+
+.bg-light-blue {
+    background-color: var(--bg-light-blue);
+}
+
+.icon-box {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.alert-custom {
+    border-radius: var(--border-radius-custom);
+    border: none;
+    background-color: var(--bg-light-blue);
+    color: #004085;
+}
+
+footer {
+    background-color: #1a1d20;
+    color: white;
+    padding: 60px 0;
+    margin-top: 40px;
+}
+
+.team-member {
+    font-weight: 500;
+    color: #adb5bd;
+}
