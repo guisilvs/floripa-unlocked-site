@@ -42,3 +42,26 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/*Campo de texto AI*/
+.custom-ai-bar {
+    border: 2px solid #0099FF;
+    border-radius: 12px;
+
+    background-color: #d8efff;
+    padding: 4px 8px;
+    width: auto;
+    height: 60px;
+}
+
+.custom-ai-bar .form-control {
+    background-color: transparent;
+}
+
+.custom-ai-bar .btn {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+}
+/*Campo de texto AI*/

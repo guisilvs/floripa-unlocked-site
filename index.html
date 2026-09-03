@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Floripa Unlocked - FAQ</title>
 
     <!--Conexão com o Bootstrap-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -40,13 +40,29 @@
     <div class="grid-container">
         <div class="coluna">
             <!--FAQ-->
-            <h4>Dúvidas frequentes</h4>  
+            <h4>Dúvidas frequentes</h4>
         </div>
         <div class="coluna">
             <!--IA FAQ-->
             <h4>Pergunta para a IA</h4>
-            <p>Continua com dúvidas? Você pode utilizar a ferramenta de inteligência artificial abaixo para ter mais esclarecimentos sobre o nosso projeto Floripa Unlocked.</p>
-            
+            <p>Continua com dúvidas? Você pode utilizar a ferramenta de inteligência artificial abaixo para ter mais
+                esclarecimentos sobre o nosso projeto Floripa Unlocked.</p>
+
+            <!--Barra de input com botão acoplado-->
+            <div class="input-group custom-ai-bar">
+                <input type="text" class="form-control border-0 shadow-none" placeholder="Toque para digitar"
+                    id="userPrompt">
+                <button class="btn border-0" type="button" id="btnEnviar">
+                    <!--Ícone do avião de envio-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#0099FF" viewBox="0 0 16 16">
+                        <path
+                            d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Contêiner de texto para o output da IA (aguardando retorno) -->
+            <div id="aiOutput" class="mt-3"></div>
         </div>
     </div>
     <!--Fim do Grid Principal-->
