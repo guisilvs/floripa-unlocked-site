@@ -41,7 +41,84 @@
         <div class="coluna">
             <!--FAQ-->
             <h4>Dúvidas frequentes</h4>
+            
+            <!-- Accordion -->
+            <div class="accordion mt-4" id="accordionFAQ">
+                
+                <!-- Item 1 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                            O que é o Floripa Unlocked?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            O Floripa Unlocked é um aplicativo mobile para iOS e Android que revoluciona a forma como jovens e turistas exploram Florianópolis, combatendo a indecisão e a paralisia de escolha ao entregar rodadas periódicas com três a cinco sugestões hiperpersonalizadas de passeios, bares e restaurantes, fugindo das opções óbvias promovidas nas redes sociais.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                            Como funciona as recomendações?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            O motor de recomendação cruza em tempo real as preferências do usuário, como faixa de orçamento e categorias de interesse, com dados de contexto geográfico e climático fornecidos por APIs de geolocalização, clima e agenda cultural, garantindo que as sugestões entregues sejam sempre adequadas à localização, ao clima e ao horário da visita.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                            Como funciona a gamificação?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            O aplicativo transforma a exploração da cidade em um jogo interativo por meio da barra de progresso '100% Floripa' e de um mapa de conquistas, motivando os usuários a descobrirem novos bairros e comércios locais para desbloquear selos, competir de forma saudável com a sua rede de amigos e zerar a ilha.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                            Como funciona o sistema de cashback?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            Ao consumir em um estabelecimento parceiro sugerido pelo aplicativo, o usuário aponta a câmera do celular para o QR Code disponível no balcão do comércio, realizando um check-in instantâneo que valida a sua visita no mapa de exploração e credita a porcentagem de cashback acumulada diretamente na sua conta.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" aria-expanded="false" aria-controls="faq5">
+                            Qual é o benefício da plataforma para os pequenos comércios locais?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+                        <div class="accordion-body">
+                            Para os pequenos e novos negócios da ilha, o aplicativo funciona como um canal de atração B2B que direciona um fluxo presencial qualificado de jovens e turistas, permitindo aos lojistas criarem promoções e taxas de cashback dinâmicas no painel web para movimentar o estabelecimento em dias e horários de menor movimento.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
         </div>
+        
         <div class="coluna">
             <!--IA FAQ-->
             <h4>Pergunta para a IA</h4>
@@ -67,8 +144,7 @@
     </div>
     <!--Fim do Grid Principal-->
 
-
-   <!--conexão com chave de API local-->
+    <!--conexão com chave de API local-->
     <script src="./js/config.js"></script>
     
     <!-- JS do Bootstrap -->
@@ -76,8 +152,6 @@
     
     <!-- Seu JS principal (apenas uma vez, por último) -->
     <script src="./js/script.js"></script>
-</body>
-
 </body>
 
 </html>
