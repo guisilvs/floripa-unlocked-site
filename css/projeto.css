@@ -9,8 +9,7 @@ body {
     color: #333;
     line-height: 1.6;
     margin: 0;
-    padding: 0;
-    /* Removido o padding-top para eliminar a barra branca */
+    padding: 70px 0 0;
 }
 
 /* Navbar: Inicialmente escondida */
@@ -21,6 +20,25 @@ body {
     transform: translateY(-100%);
     transition: all 0.4s ease-in-out;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Mantem a navegacao principal visivel e fixa no topo. */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+    background-color: #0099FF !important;
+    backdrop-filter: none;
+    border-bottom: none;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* O navbar alternativo nao e necessario quando a navegacao principal esta fixa. */
+#mainNav {
+    display: none;
 }
 
 /* Classe ativada via JavaScript ao scrollar */
