@@ -32,12 +32,17 @@
 .grid-container {
   display: grid;
   padding: 25px;
-  grid-template-columns: repeat(2, 1fr);
+  /* grid-template-columns: repeat(2, 1fr); */
+  grid-template-columns: 1.5fr 1fr; /*altera a proporção das colunas*/
   gap: 1.5rem;
 }
 
+.coluna1 { 
+    width: 600px;
+}
+
 /* Responsividade para telas menores */
-@media (max-width: 768px) {
+@media (max-width: 800px) {
   .grid-container {
     grid-template-columns: 1fr;
   }
