@@ -73,8 +73,17 @@
                 </button>
             </div>
 
+            <!-- Mensagem de erro da validação de entrada -->
+            <div id="erroInput" class="erro-validacao"></div>
+
             <!-- Contêiner de texto para o output da IA (aguardando retorno) -->
             <div id="aiOutput" class="mt-3"></div>
+
+            <!-- Seção de Histórico de Respostas (CRUD Local) -->
+            <div id="historicoContainer" class="mt-4" style="display: none;">
+                <h6 class="titulo-historico">Respostas anteriores</h6>
+                <div id="listaHistorico"></div>
+            </div>
         </div>
     </div>
     <!--Fim do Grid Principal-->
