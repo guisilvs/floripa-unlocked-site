@@ -81,3 +81,56 @@
     display: none;
 }
 /*Campo de texto AI*/
+
+/* --- Tratamento de Erro e Histórico (CRUD) --- */
+.erro-validacao {
+    color: #dc3545;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: 6px;
+}
+
+.erro-validacao:empty {
+    display: none;
+}
+
+.titulo-historico {
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 12px;
+}
+
+.card-historico {
+    position: relative;
+    border: 2px solid #005085;
+    border-radius: 12px;
+    padding: 15px 40px 15px 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+    opacity: 0.55;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.btn-deletar-historico {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: #ff3b3b;
+    color: #ffffff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+}
+
+.btn-deletar-historico:hover {
+    background-color: #cc0000;
+}
