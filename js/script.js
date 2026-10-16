@@ -1,46 +1,129 @@
+// --- FUNÇÕES DO CRUD LOCAL (HISTÓRICO) ---
+
+const CHAVE_STORAGE = "floripaUnlocked_historicoIA";
+
+// READ: Carrega as respostas salvas no localStorage e exibe na tela
+function carregarHistorico() {
+    const historicoContainer = document.getElementById("historicoContainer");
+    const listaHistorico = document.getElementById("listaHistorico");
+    const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+
+    listaHistorico.innerHTML = "";
+
+    // O título "Respostas anteriores" só aparece quando há itens no histórico
+    if (historico.length === 0) {
+        historicoContainer.style.display = "none";
+        return;
+    }
+
+    historicoContainer.style.display = "block";
+
+    historico.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "card-historico";
+        card.innerHTML = `
+            <button type="button" class="btn-deletar-historico" title="Excluir resposta" onclick="deletarDoHistorico(${item.id})">X</button>
+            <div>${item.resposta}</div>
+        `;
+        listaHistorico.appendChild(card);
+    });
+}
+
+// CREATE: Salva uma nova resposta no início do histórico no localStorage
+function salvarNoHistorico(perguntaTexto, respostaTexto) {
+    const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+
+    const novoItem = {
+        id: Date.now(),
+        pergunta: perguntaTexto,
+        resposta: respostaTexto
+    };
+
+    // Adiciona no início do array para a mais recente aparecer primeiro
+    historico.unshift(novoItem);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(historico));
+
+    carregarHistorico();
+}
+
+// DELETE: Remove uma resposta específica pelo ID e atualiza a visualização
+function deletarDoHistorico(id) {
+    let historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
+    historico = historico.filter((item) => item.id !== id);
+    localStorage.setItem(CHAVE_STORAGE, JSON.stringify(historico));
+
+    carregarHistorico();
+}
+
+// --- FIM DAS FUNÇÕES DO CRUD ---
+
+
 //Funcionamento da IA
 
 // Adiciona o evento de clique no botão de envio
 document.getElementById("btnEnviar").addEventListener("click", async () => {
-    const userInput = document.getElementById("userPrompt").value;
+    const inputElement = document.getElementById("userPrompt");
+    const userInput = inputElement.value;
     const outputDiv = document.getElementById("aiOutput");
+    const erroDiv = document.getElementById("erroInput");
+
+    // Tratamento de erro: verifica se a entrada possui mais de 10 letras (desconsiderando espaços)
+    const totalLetras = userInput.replace(/\s+/g, "").length;
+    if (totalLetras <= 10) {
+        erroDiv.textContent = "A sua pergunta deve conter mais de 10 letras.";
+        return;
+    }
+
+    // Limpa mensagem de erro caso a entrada seja válida
+    erroDiv.textContent = "";
     
     // Feedback visual simples enquanto aguarda
     outputDiv.innerHTML = "<span class='text-muted'>Pensando...</span>";
 
-    // 1. Busca o conteúdo dos dois arquivos JSON
-    const fetchPrompt = await fetch("./data/prompt.json");
-    const dadosPrompt = await fetchPrompt.json();
-    
-    const fetchConteudo = await fetch("./data/conteudo.json");
-    const dadosConteudo = await fetchConteudo.json();
+    try {
+        // 1. Busca o conteúdo dos dois arquivos JSON
+        const fetchPrompt = await fetch("./data/prompt.json");
+        const dadosPrompt = await fetchPrompt.json();
+        
+        const fetchConteudo = await fetch("./data/conteudo.json");
+        const dadosConteudo = await fetchConteudo.json();
 
-    // 2. Concatena tudo para formar o System Prompt + Entrada
-    // O JSON.stringify converte os objetos de volta para texto para a IA ler
-    const promptCompleto = `
-        Instruções de sistema: ${JSON.stringify(dadosPrompt)}
-        Contexto do FAQ: ${JSON.stringify(dadosConteudo)}
-        Dúvida do usuário: ${userInput}
-    `;
+        // 2. Concatena tudo para formar o System Prompt + Entrada
+        // O JSON.stringify converte os objetos de volta para texto para a IA ler
+        const promptCompleto = `
+            Instruções de sistema: ${JSON.stringify(dadosPrompt)}
+            Contexto do FAQ: ${JSON.stringify(dadosConteudo)}
+            Dúvida do usuário: ${userInput}
+        `;
 
-    // 3. Faz a requisição direta para a API do Google AI Studio
-const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${API_KEY}`, {        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            contents: [
-                {
-                    parts: [{ text: promptCompleto }]
-                }
-            ]
-        })
-    });
+        // 3. Faz a requisição direta para a API do Google AI Studio
+        const resposta = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${API_KEY}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                contents: [
+                    {
+                        parts: [{ text: promptCompleto }]
+                    }
+                ]
+            })
+        });
 
-    const dados = await resposta.json();
+        const dados = await resposta.json();
+        const textoResposta = dados.candidates[0].content.parts[0].text;
 
-    // 4. Imprime o resultado exatamente na div designada
-    outputDiv.innerHTML = dados.candidates[0].content.parts[0].text;
+        // 4. Imprime o resultado exatamente na div designada
+        outputDiv.innerHTML = textoResposta;
+
+        // 5. Salva a resposta no histórico local (CREATE do CRUD) e limpa o campo
+        salvarNoHistorico(userInput, textoResposta);
+        inputElement.value = "";
+    } catch (erro) {
+        console.error("Erro ao consultar a IA:", erro);
+        outputDiv.innerHTML = "<span class='text-danger'>Ocorreu um erro ao buscar a resposta. Tente novamente.</span>";
+    }
 });
 
 // --- FIM DO BLOCO DA IA ---
@@ -87,4 +170,7 @@ async function carregarFAQ() {
 }
 
 // 5. Executa a função assim que a página terminar de carregar
-document.addEventListener('DOMContentLoaded', carregarFAQ);
+document.addEventListener('DOMContentLoaded', () => {
+    carregarFAQ();
+    carregarHistorico();
+});
