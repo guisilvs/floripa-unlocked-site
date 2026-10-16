@@ -1,8 +1,9 @@
 // --- FUNÇÕES DO CRUD LOCAL (HISTÓRICO) ---
 
 const CHAVE_STORAGE = "floripaUnlocked_historicoIA";
+let idRespostaAtual = null; // Controla qual resposta está visível no campo principal para não duplicar
 
-// READ: Carrega as respostas salvas no localStorage e exibe na tela
+// READ: Carrega as respostas salvas no localStorage e exibe na tela (exceto a resposta atual)
 function carregarHistorico() {
     const historicoContainer = document.getElementById("historicoContainer");
     const listaHistorico = document.getElementById("listaHistorico");
@@ -10,15 +11,18 @@ function carregarHistorico() {
 
     listaHistorico.innerHTML = "";
 
-    // O título "Respostas anteriores" só aparece quando há itens no histórico
-    if (historico.length === 0) {
+    // Filtra para exibir apenas as respostas anteriores, ocultando a que já está no campo principal
+    const respostasAnteriores = historico.filter((item) => item.id !== idRespostaAtual);
+
+    // O título "Respostas anteriores" só aparece quando há itens anteriores para mostrar
+    if (respostasAnteriores.length === 0) {
         historicoContainer.style.display = "none";
         return;
     }
 
     historicoContainer.style.display = "block";
 
-    historico.forEach((item) => {
+    respostasAnteriores.forEach((item) => {
         const card = document.createElement("div");
         card.className = "card-historico";
         card.innerHTML = `
@@ -29,7 +33,7 @@ function carregarHistorico() {
     });
 }
 
-// CREATE: Salva uma nova resposta no início do histórico no localStorage
+// CREATE: Salva uma nova resposta no localStorage e a define como a resposta atual
 function salvarNoHistorico(perguntaTexto, respostaTexto) {
     const historico = JSON.parse(localStorage.getItem(CHAVE_STORAGE)) || [];
 
@@ -39,7 +43,10 @@ function salvarNoHistorico(perguntaTexto, respostaTexto) {
         resposta: respostaTexto
     };
 
-    // Adiciona no início do array para a mais recente aparecer primeiro
+    // Marca a nova resposta como atual para que ela fique apenas no campo principal
+    idRespostaAtual = novoItem.id;
+
+    // Adiciona no início do array para a mais recente aparecer primeiro quando for para o histórico
     historico.unshift(novoItem);
     localStorage.setItem(CHAVE_STORAGE, JSON.stringify(historico));
 
@@ -76,6 +83,12 @@ document.getElementById("btnEnviar").addEventListener("click", async () => {
 
     // Limpa mensagem de erro caso a entrada seja válida
     erroDiv.textContent = "";
+
+    // Ao iniciar uma nova interação, libera a resposta anterior para aparecer no histórico abaixo
+    if (idRespostaAtual !== null) {
+        idRespostaAtual = null;
+        carregarHistorico();
+    }
     
     // Feedback visual simples enquanto aguarda
     outputDiv.innerHTML = "<span class='text-muted'>Pensando...</span>";
@@ -117,7 +130,7 @@ document.getElementById("btnEnviar").addEventListener("click", async () => {
         // 4. Imprime o resultado exatamente na div designada
         outputDiv.innerHTML = textoResposta;
 
-        // 5. Salva a resposta no histórico local (CREATE do CRUD) e limpa o campo
+        // 5. Salva a resposta no localStorage (CREATE) mantendo apenas as anteriores visíveis no histórico
         salvarNoHistorico(userInput, textoResposta);
         inputElement.value = "";
     } catch (erro) {
