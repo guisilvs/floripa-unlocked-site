@@ -9,10 +9,14 @@ O "carro-chefe" desta entrega é a implementação de um **CRUD Local** para o h
 - **Delete:** Implementamos um botão específico para apagar e limpar o histórico de conversas salvo localmente.
 
 ## Outras Funcionalidades Desta Página
-- **FAQ 100% Dinâmico:** O Accordion do Bootstrap agora está conectado diretamente a uma base de dados JSON, gerando as perguntas e respostas de forma dinâmica.
-- **Validação de Segurança:** O usuário agora precisa digitar um mínimo de 10 letras para conseguir enviar uma pergunta para a Inteligência Artificial.
-- **Ajustes de UI/UX:** Atualização na barra de navegação (Navbar), alterando a aba de "Nosso projeto" para "Início".
-- **Injeção de Contexto (RAG):** A IA lê os dados locais do aplicativo (via JSON) para responder às dúvidas com precisão sobre o Floripa Unlocked.
+
+- **FAQ 100% Dinâmico:** O Accordion do Bootstrap agora está conectado diretamente a uma base de dados JSON, gerando as perguntas e respostas de forma dinâmica e facilitando a atualização das informações.
+
+- **Validação de Segurança:** O usuário agora precisa digitar um mínimo de 10 letras para conseguir enviar uma pergunta para a Inteligência Artificial, *evitando entradas vazias ou muito curtas*.
+- **Ajustes de UI/UX:** Atualização na barra de navegação (Navbar), alterando a aba de "Nosso projeto" para "Início", tornando a navegação mais intuitiva.
+- **Injeção de Contexto (RAG):** A IA lê os dados locais do aplicativo (via JSON) para responder às dúvidas com precisão sobre o Floripa Unlocked, fornecendo respostas mais relevantes ao contexto do projeto.
+- **Histórico de Conversas:** Armazenamento local de perguntas e respostas para facilitar a consulta de interações anteriores, utilizando o `localStorage`.
+- **Interface Responsiva:** Adaptação dos elementos visuais para diferentes tamanhos de tela, proporcionando uma experiência de navegação mais consistente em computadores e dispositivos móveis. 
 
 ## Sobre o Projeto (Contexto Geral)
 - **Motor de Recomendações:** Cruzamento de preferências do usuário com clima e geolocalização.
